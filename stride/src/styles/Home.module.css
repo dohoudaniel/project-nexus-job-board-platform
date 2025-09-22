@@ -1,0 +1,249 @@
+.home {
+    text-align: center;
+  }
+  
+  .hero {
+    background-color: #6eb9ff;
+    /* background-color: #6eb9ff; */
+    /* background-color: #ebedf0; */
+    /* background-color: #ffb2b2; */
+    /* background-color: #dab8e0; */
+    /* background-color: #ebf8ae; */
+    color: white;
+    background-image: url(/assets/images/job-heroo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    position: relative;
+    height: 500px;
+    width: 100%;
+  }
+  .hero_overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    padding: 3rem 1rem 3rem 1rem;
+  }
+  .hero_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    letter-spacing: 1px;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    color: #6eb9ff;
+  }
+  
+  .featured_jobs {
+    padding: 4rem 2rem;
+    margin: auto;
+  }
+  .featured_jobs h2 {
+    font-size: 2rem;
+    color: #1d1d1d;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+  
+  .employer_cta,
+  .job_seeker_cta {
+    padding: 50px 20px;
+    background: #6eb9ff;
+    margin: 20px 0;
+  }
+  .employer_cta p,
+  .job_seeker_cta p {
+    margin-bottom: 20px;
+  }
+  
+  .cta_button {
+    padding: 10px 40px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: max-content;
+    margin: auto;
+    background-color: #ffd700;
+  }
+  .cta_button:hover {
+    background-color: #0073e6;
+  }
+  .success_stories {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #fff;
+  }
+  
+  .success_stories h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .success_stories p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #686868;
+  }
+  
+  .testimonials {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .testimonial_card {
+    background: #6eb9ff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .testimonial_card p {
+    font-style: italic;
+  }
+  
+  .testimonial_card span {
+    display: block;
+    font-weight: 600;
+    color: #333;
+  }
+  .hiring_stats {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f8f9fa;
+  }
+  
+  .hiring_stats h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hiring_stats p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stats_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .stat_card {
+    background: #ffd700;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .stat_card h3 {
+    font-size: 2rem;
+    color: #0011ff;
+    font-weight: bold;
+  }
+  
+  .stat_card p {
+    color: #333;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+  }
+  
+  @media only screen and (max-width: 770px) {
+    .hero {
+      background-position: top 30px center;
+      height: 400px;
+    }
+    .hero_content {
+      justify-content: flex-end;
+    }
+    .hero_overlay h1 {
+      font-size: 2.6rem;
+    }
+    .hero_overlay p {
+      margin-bottom: 1rem;
+    }
+    .featured_jobs {
+      padding: 3rem 1rem;
+    }
+    .featured_jobs h2 {
+      text-align: center;
+      font-size: 1.7rem;
+    }
+    .success_stories h2,
+    .hiring_stats h2{
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .success_stories p,
+    .hiring_stats p{
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .hero {
+      background-position: top 30px center;
+    }
+    .hero_overlay {
+      padding: 3rem 1rem 5rem 1rem;
+    }
+    .hero_overlay h1 {
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+    .hero_overlay p {
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .hero {
+      background-position: top 60px center;
+    }
+    .hero_overlay {
+      padding: 3rem 1rem 4rem 1rem;
+    }
+    .featured_jobs {
+      padding: 2rem 0.5rem;
+    }
+  }

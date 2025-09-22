@@ -1,0 +1,62 @@
+.job_description_page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 2rem 5rem;
+  }
+  
+  .similar_listings {
+    width: 300px;
+  }
+  .similar_listings small {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .cta_button,
+  .not_found_link {
+    padding: 0.3rem 1rem;
+    background: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .not_found_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .cta_button:hover,
+  .not_found_link:hover {
+    background-color: black;
+  }
+  @media only screen and (max-width: 1200px) {
+    .job_description_page {
+      padding: 1rem 1rem 5rem;
+    }
+  }
+  @media only screen and (max-width: 1100px) {
+    .job_description_page {
+      flex-direction: column;
+      padding: 1rem 1rem 5rem;
+    }
+  
+    .similar_listings {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 770px) {
+    .job_description_page {
+      padding: 1rem 0 4rem;
+    }
+  }

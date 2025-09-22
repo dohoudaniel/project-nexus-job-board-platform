@@ -1,0 +1,153 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background: #FFD700;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  }
+  .header.static {
+    position: static;
+    border-bottom: 1px solid #ddd;
+  }
+  .header_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 3rem;
+    height: 70px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .menu_btn {
+    display: none;
+    cursor: pointer;
+    justify-content: flex-start;
+    width: 40px;
+    height: 100%;
+    align-items: center;
+  }
+  .menu_btn svg {
+    width: 26px;
+    height: 26px;
+    color: #000000;
+    fill: #000000;
+  }
+  
+  .logo {
+    height: 100%;
+  }
+  .logo_link {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    color: #2c3e50;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: 1000;
+  }
+  .logo_link svg {
+    width: 28px;
+    height: 28px;
+  }
+  .nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  .nav_list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav_list_auth {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav_list a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #00366b;
+    font-weight: 600;
+  }
+  .nav_list a:hover {
+    color: #333;
+  }
+  .sign_in,
+  .sign_up {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 5px;
+  }
+  .sign_in {
+    border: 1px rgb(0, 128, 107);
+    background-color: #6eb9ff;
+    color: #2c3e50;
+  }
+  .sign_up {
+    color: #ffffff;
+    border: 1px #000000;
+  
+    background-color: #000000;
+  }
+  .sign_in:hover {
+    background-color: #0073e6;
+    color: #ffffff;
+  }
+  .sign_up:hover {
+    background-color: #0073e6;
+  }
+  .logout_btn {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    background-color: #eee;
+    color: rgb(255, 0, 0);
+  }
+  .logout_btn:hover {
+    background-color: rgb(0, 128, 107);
+    color: #fff;
+  }
+  @media only screen and (max-width: 1000px) {
+    .header_wrapper {
+      padding: 0.5rem 2rem;
+    }
+    .nav,
+    .nav_list {
+      gap: 1rem;
+    }
+    .nav_list_auth {
+      gap: 0.5rem;
+    }
+    .nav_list a {
+      font-size: 0.9rem;
+    }
+    .sign_in,
+    .sign_up {
+      padding: 0.2rem 0.6rem;
+    }
+  }
+  @media only screen and (max-width: 770px) {
+    .header_wrapper {
+      padding: 0.5rem 1rem;
+    }
+    .nav {
+      display: none;
+    }
+    .menu_btn {
+      display: flex;
+    }
+  }

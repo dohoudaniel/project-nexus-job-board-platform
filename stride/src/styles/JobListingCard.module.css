@@ -1,0 +1,152 @@
+.job_card {
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    padding: 1rem 1.5rem 2rem;
+    width: 100%;
+    /* max-width: 370px; */
+    text-align: left;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 1px 5px #0000009a;
+    transition: all 0.3s ease;
+    background-image: url(../../public/assets/images/briefcase-icon.svg);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: bottom 40px right 50px;
+  }
+  .job_card:hover {
+    border: 1px solid blue;
+    box-shadow: 0 1px 2px #0000009a;
+    scale: 1.02;
+  }
+  .featured_tag {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    color: #fff;
+    background-color: #ffd700;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1;
+    font-weight: 700;
+    border-top-right-radius: 5px;
+    box-shadow: 0px 1px 5px #00000062;
+    border: 1px #000000;
+    letter-spacing: 1px;
+  }
+  .job_card_header{
+    width: 100%;
+  }
+  .job_card_header h3 {
+    margin: 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .job_info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .job_logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px #0073e6;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .job_logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .job_info_col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+  .company_name {
+    color: #ffb302;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .flex_gap {
+    display: flex;
+    align-items: center;
+    height: auto;
+    gap: 1px;
+  }
+  .flex_gap svg {
+    fill: red;
+    width: 16px;
+    height: 16px;
+  }
+  .flex_gap p {
+    color: #333;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .contract {
+    color: #222;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+  .level {
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .salary {
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    gap: 3px;
+    margin-top: 0.5rem;
+  }
+  .salary svg {
+    width: 16px;
+    height: 16px;
+    fill: #ffffff;
+    stroke: #0bb405;
+    stroke-width: 3px;
+  }
+  
+  .job_card a {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0.2rem 1rem;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    margin-left: auto;
+    width: max-content;
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0.3rem;
+    background-color: #ffd700;
+    border: 3px #004183;
+    color: #0073e6;
+    transition: all 0.3s ease-in-out;
+  }
+  .job_card a:hover {
+    border: 2px solid #4a90ac;
+    background-color: #004183;
+    color: #fff;
+    border-radius: 2px;
+  }
+  /* @media only screen and (max-width: 1100px) {
+    .job_card {
+      max-width: 100%;
+    }
+  } */
