@@ -1,114 +1,74 @@
-import { useState, useEffect } from 'react';
-import {
-  fetchFeaturedJobs,
-  fetchJobsByCategory,
-  fetchJobById,
-  fetchJobs,
-  fetchJobSectors,
-} from '../assets/images/jobs';
-import { Job, JobCategory } from '../interfaces';
+// src/hooks/useJobs.ts
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { API_ENDPOINTS } from '../config/apiConfig';
+
+// 1. Define the Job Interface (matches your db.json structure)
+export interface Job {
+  id: string;
+  company: string;
+  logo: string;
+  new: boolean;
+  featured: boolean;
+  position: string;
+  role: string;
+  level: string;
+  postedAt: string;
+  contract: string;
+  location: string;
+  languages: string[];
+  description: string;
+  requirements: string[];
+  salary: string;
+  tools: string[];
+  slots: number;
+  category: string;
+  categoryLink?: '?';
+}
+
+// 2. Define the Sector Interface (matches your db.json structure)
+export interface Sector {
+  title: string;
+  icon: string;
+  link: string;
+  count: number;
+  id: string;
+}
+
+// 3. The useJobs hook (simplified for this example, assumes you handle API_ENDPOINTS import correctly)
 const useJobs = () => {
-  const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [jobSectors, setJobSectors] = useState<JobCategory[]>([]);
-  const [locations, setLocations] = useState<string[]>([]);
-  const [experienceLevels, setExperienceLevels] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [jobSectors, setJobSectors] = useState<Sector[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const getJobsData = async () => {
-      setLoading(true);
-      setError(null);
-      // console.log("APU")
+    const fetchAllData = async () => {
       try {
-        const [featured, sectors, allJobs] = await Promise.all([
-          fetchFeaturedJobs(),
-          fetchJobSectors(),
-          fetchJobs(),
+        // Fetch both jobs and sectors concurrently
+        const [jobsResponse, sectorsResponse] = await Promise.all([
+          axios.get(API_ENDPOINTS.jobs),
+          axios.get(API_ENDPOINTS.sectors),
         ]);
 
-        setFeaturedJobs(featured);
-        setJobSectors(sectors);
-        setJobs(allJobs);
-
-        setLocations([...new Set(allJobs.map((job) => job.location))]);
-        setExperienceLevels([...new Set(allJobs.map((job) => job.level))]);
-      } catch (error) {
-        setError(error instanceof Error ? error.message : String(error));
+        setJobs(jobsResponse.data);
+        setJobSectors(sectorsResponse.data);
+      } catch (err) {
+        console.error('Data fetch error:', err);
+        setError('Failed to fetch job data from the server.');
       } finally {
         setLoading(false);
       }
     };
 
-    getJobsData();
+    fetchAllData();
   }, []);
 
-  return {
-    featuredJobs,
-    jobSectors,
-    jobs,
-    locations,
-    experienceLevels,
-    loading,
-    error,
-  };
-};
+  // NOTE: This assumes 'featuredJobs' is a filtered subset of 'jobs'
+  const featuredJobs = jobs.filter(job => job.featured).slice(0, 4);
 
-export const useJob = (id: string) => {
-  const [job, setJob] = useState<Job | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const getJob = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const data = await fetchJobById(id);
-        setJob(data);
-      } catch (error) {
-        setError(error instanceof Error ? error.message : String(error));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getJob();
-  }, [id]);
-
-  return { job, loading, error };
-};
-
-export const useSimilarJobs = (category: string, jobId: string) => {
-  const [similarJobs, setSimilarJobs] = useState<Job[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const getSimilarJobs = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const data = await fetchJobsByCategory(category);
-        const filteredJobs = data.filter((job) => job.id !== jobId).slice(0, 3);
-        setSimilarJobs(filteredJobs);
-      } catch (error) {
-        setError(error instanceof Error ? error.message : String(error));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (category) {
-      getSimilarJobs();
-    }
-  }, [category, jobId]);
-
-  return { similarJobs, loading, error };
+  return { jobs, featuredJobs, jobSectors, loading, error };
 };
 
 export default useJobs;
