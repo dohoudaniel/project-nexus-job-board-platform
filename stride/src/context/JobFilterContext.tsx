@@ -1,45 +1,20 @@
-// src/context/JobFilterContext.tsx
+// src/context/JobFilterContext.ts
 
-import React, { createContext, useState, useContext } from 'react';
+import { createContext } from 'react';
 import { Job } from '../hooks/useJobs'; // Import the Job type
 
 // Define the shape of the context state and functions
-interface JobFilterContextType {
+export interface JobFilterContextType {
   activeFilters: string[];
+  // Add the setter function so consumers can update filters
+  setActiveFilters: React.Dispatch<React.SetStateAction<string[]>>;
   filteredJobs: Job[];
-  // You will add functions here like applyFilter, clearFilters, etc.
 }
 
-// Initial state (or dummy values)
-const initialContext: JobFilterContextType = {
+// Create the context with default, non-functional values
+export const JobFilterContext = createContext<JobFilterContextType>({
   activeFilters: [],
+  // Provide a dummy function for the setter
+  setActiveFilters: () => {},
   filteredJobs: [],
-};
-
-// Create the context
-export const JobFilterContext =
-  createContext<JobFilterContextType>(initialContext);
-
-// The Provider component
-export const JobFilterProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  // You will implement logic here to calculate 'filteredJobs' based on 'activeFilters'
-
-  const contextValue: JobFilterContextType = {
-    activeFilters,
-    filteredJobs: [], // Placeholder for now
-  };
-
-  return (
-    <JobFilterContext.Provider value={contextValue}>
-      {children}
-    </JobFilterContext.Provider>
-  );
-};
-
-// Custom hook to use the filter context easily
-export const useJobFilters = () => {
-  return useContext(JobFilterContext);
-};
+});

@@ -1,13 +1,16 @@
-// src/context/JobProvider.tsx (Example)
+// src/context/JobProvider.tsx
 
-import React, { createContext, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, ReactNode } from 'react';
 import axios from 'axios';
 import { API_ENDPOINTS } from '../config/apiConfig';
+// Ensure JobContext is defined and exported in './JobContext'
 import { Job, JobContext, JobContextType } from './JobContext';
 
-// This assumes Job and JobContextType are defined and exported in JobContext.ts
+// NOTE: We remove the JobFilterContext import since this Provider doesn't manage filters.
+// import { JobFilterContext, JobFilterContextType } from './JobFilterContext';
 
-export const JobProvider: React.FC<{ children: React.ReactNode }> = ({
+// The JobProvider component
+export const JobProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -18,13 +21,14 @@ export const JobProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       setLoading(true);
       setError(null);
-      const jobsResponse = await axios.get(API_ENDPOINTS.jobs);
-      // You may need to fetch sectors here too, if useJobs did that:
-      // const sectorsResponse = await axios.get(API_ENDPOINTS.sectors);
 
+      // Fetch the jobs data
+      const jobsResponse = await axios.get(API_ENDPOINTS.jobs);
       setJobs(jobsResponse.data);
     } catch (err) {
-      setError('Failed to load data.');
+      // FIX: Use 'err' in console.error to clear ESLint warning
+      console.error('Failed to fetch jobs:', err);
+      setError('Failed to load job postings. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -34,12 +38,11 @@ export const JobProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchJobs();
   }, [fetchJobs]);
 
-  // This value is what consumers of the context will receive
+  // Value passed to all consumers of the JobContext
   const contextValue: JobContextType = {
     jobs, // Full list of jobs
     loading,
     error,
-    // ... any other state (e.g., sectors)
   };
 
   return (

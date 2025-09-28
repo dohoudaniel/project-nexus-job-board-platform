@@ -1,31 +1,32 @@
 // src/pages/Home.tsx
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// FIX: Add missing imports
 import styles from '../styles/Home.module.css';
 import JobListing from '../components/JobListing';
 import Container from '../components/Container';
+// RE-ADD: You need these components for the logic below
 import JobCategoryListing from '../components/JobCategoryListing';
 import JobSearch from '../components/JobSearch';
 import useJobs from '../hooks/useJobs';
 import { Loader } from '../components/Loader';
-// FIX: Add missing JobFilterProvider import
 import { JobFilterProvider } from '../context/JobFilterContext';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import MessageDisplayCard from '../components/MessageDisplayCard';
-// FIX: Add missing JobsList import
 import JobsList from '../components/JobsList/JobsList';
-// FIX: Remove unused JobProvider import (assuming you use useJobs, not JobProvider here)
-// import { JobProvider } from '../context/JobProvider'; // <-- REMOVE THIS LINE IF IT WAS HERE
 
 const Home = () => {
-  // Data is fetched and destructured here
+  // Note: Removed the underscore prefixes to use the variables naturally
   const { featuredJobs, jobSectors, loading, error, jobs } = useJobs();
   const navigate = useNavigate();
   const location = useLocation();
   const successMessage = location.state?.successMessage;
 
-  // ... handleSearchSelect function ...
+  // FIX: Re-introduce the missing function that the component logic relies on
+  const handleSearchSelect = (searchParams: { [key: string]: string }) => {
+    const params = new URLSearchParams(searchParams);
+    navigate(`/jobs?${params.toString()}`);
+    return;
+  };
 
   if (loading) return <Loader />;
   if (error)
@@ -39,10 +40,34 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <JobFilterProvider>
-        {' '}
-        {/* FIX: JobFilterProvider is now imported */}
-        {/* ... successMessage ... */}
-        <section className={styles.hero}>{/* ... hero content ... */}</section>
+        {successMessage && (
+          <MessageDisplayCard
+            message={successMessage}
+            type="success"
+            autoHide
+          />
+        )}
+        <section className={styles.hero}>
+          <div className={styles.hero_overlay}>
+            <div className={styles.hero_content}>
+              <h1>Explore the Latest Job Postings</h1>
+              <h3>
+                Find your Dream Job / Recruit the best Jobseekers - All in one
+                place
+              </h3>
+              <p>
+                Join thousands of JobSeekers and Recruiters connecting on our
+                platform.
+              </p>
+              {/* Re-add JobSearch component */}
+              <JobSearch
+                jobs={jobs}
+                onSearchSelect={handleSearchSelect}
+                layoutType="hero"
+              />
+            </div>
+          </div>
+        </section>
       </JobFilterProvider>
 
       <Container className="no_pad">
@@ -66,7 +91,15 @@ const Home = () => {
         </section>
       </Container>
 
-      {/* ... rest of the sections (Job Categories, Stats, etc.) ... */}
+      {/* Re-add Job Categories section to use jobSectors */}
+      <Container className="no_pad">
+        <section className={styles.home_top_section}>
+          <h2>Explore Job Categories</h2>
+          <JobCategoryListing listing={jobSectors} />
+        </section>
+      </Container>
+
+      {/* ... rest of the sections (Stats, Employer CTA, Feedbacks) ... */}
     </div>
   );
 };
