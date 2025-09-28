@@ -26,6 +26,7 @@ export interface Job {
   category: string;
   categoryLink?: '?';
 }
+git;
 
 // 2. Define the Sector Interface (matches your db.json structure)
 export interface Sector {
