@@ -26,7 +26,8 @@
       "salary": "₦800,000 - ₦1,000,000",
       "tools": [],
       "slots": 2,
-      "category": "Finance"
+      "category": "Finance",
+      "categoryLink": "finance"
     },
     {
       "id": "2",
