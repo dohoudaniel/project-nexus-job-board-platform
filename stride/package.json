@@ -12,6 +12,11 @@
     "deploy": "vercel --prod",
     "deploy:preview": "vercel"
   },
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.12",
     "axios": "^1.8.2",
